@@ -1,82 +1,66 @@
 <?php
-session_start();
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
-{
-    header("location: login.php");
-}
+  session_start();
+  if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
+  {
+      header("location: login.php");
+  }
 ?>
 
 <?php
 include 'connect.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud operation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crud operation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="myScripts.js"></script>      
-<script type='text/javascript'>
-$(document).ready(function(){
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="myScripts.js"></script>      
+  <script type='text/javascript'>
+  $(document).ready(function(){
 
-    // Initializing slider
-    $( "#slider" ).slider({
-        range: true,
-        min: 0,
-        max: 100,
-        values: [ 0, 100 ],
-        slide: function( event, ui ) {
+      // Initializing slider
+      $( "#slider" ).slider({
+          range: true,
+          min: 0,
+          max: 100,
+          values: [ 0, 50 ],
+          slide: function( event, ui ) {
 
-            // Get values
-            var min = ui.values[0];
-            var max = ui.values[1];
-            $('#range').text(min+' - ' + max);
-            
-            // AJAX request
-            $.ajax({
-                url: 'getData.php',
-                type: 'post',
-                data: {min:min,max:max},
-                success: function(response){
+              // Get values
+              var min = ui.values[0];
+              var max = ui.values[1];
+              $('#range').text(min+' - ' + max);
+              
+              // AJAX request
+              $.ajax({
+                  url: 'getData.php',
+                  type: 'post',
+                  data: {min:min,max:max},
+                  success: function(response){
 
-                    // Updating table data
-                    $('#tableid tr:not(:first)').remove();
-                    $('#tableid').append(response);    
-                }      
-            });
-        }
-    });
-});
-</script>
-
-<script>
-    
-/*$('table tr').on('click', 'td', function () {
-   window.location.href = "view.php";
-})*/
-</script>
-
+                      // Updating table data
+                      $('#tableid tr:not(:first)').remove();
+                      $('#tableid').append(response);    
+                  }      
+              });
+          }
+      });
+  });
+  </script>
 </head>
 <body>
-    <!--<nav class="navbar">
-        <ul class="rightnav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="insert.php">Insert</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
-    </nav>-->
     <nav class="navbar navbar-expand-custom navbar-mainbg">
         <a class="navbar-brand navbar-logo" href="#">IMS</a>
         <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,22 +90,7 @@ $(document).ready(function(){
             </ul>
         </div>
     </nav>
-    <!--<div class="dropdownP">
-      <button onclick="myFunction()" class="dropbtnP">PAID</button>
-      <div id="mydropdownP" class="dropdownP-content">
-        <a href="#">YES</a>
-        <a href="#">NO</a>
-      </div>
-    </div>
-    <div class="dropdownT">
-      <button onclick="myFunction()" class="dropbtnT">TEST</button>
-      <div id="mydropdownT" class="dropdownT-content">
-        <a href="#">YES</a>
-        <a href="#">NO</a>
-      </div>
-    </div>-->
-<!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">-->
-    <div class="container">
+   <div class="container">
 
     <div class="slider-container">
       <!-- slider --> 
@@ -162,7 +131,7 @@ $(document).ready(function(){
           <td>'.$state.'</td>
           <td>'.$ctc.'</td>
           <td>
-          <button class="btnd"><a href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash"></i></a></button>
+          <button class="btnd"><a onclick="return confirm(\'Are you sure you want to delete this record?\')" href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash"></i></a></button>
           <button class="btnu"><a href="update.php?updatecname='.$cname.' & updatecity='.$city.'" ><i class="fa fa-edit"></i></a></button>
           </td>
         </tr> 
@@ -173,7 +142,6 @@ $(document).ready(function(){
   </tbody>
 </table>
     </div>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 

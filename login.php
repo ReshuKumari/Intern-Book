@@ -1,7 +1,12 @@
 <?php
 //This script will handle login
 session_start();
-
+if (@$_GET['registered'] == 'true') {
+  echo '<div class="alert alert-success">Thank You!now please login </div>';
+  header("Refresh: 3; URL=login.php");
+ 
+}
+ 
 // check if the user is already logged in
 if(isset($_SESSION['username']))
 {
@@ -9,23 +14,23 @@ if(isset($_SESSION['username']))
     exit;
 }
 require_once "connect.php";
-
+ 
 $username = $password = $user_role = "";
 $err = "";
-
+ 
 // if request method is post
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
     if(empty(trim($_POST['username'])) || empty(trim($_POST['password'])))
     {
-        $err = "Please enter username + password";
+        $err = "Please enter username and password";
     }
     else{
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
         $user_role = trim($_POST['user_role']);
     }
-
-
+ 
+ 
 if(empty($err))
 {
     $sql = "SELECT id, username, password, user_role FROM users WHERE username = ?";
@@ -33,8 +38,8 @@ if(empty($err))
     mysqli_stmt_bind_param($stmt, "s", $param_username);
     $param_username = $username;
     $param_user_role = $user_role;
-    
-    
+   
+   
     // Try to execute this statement
     if(mysqli_stmt_execute($stmt)){
         mysqli_stmt_store_result($stmt);
@@ -53,32 +58,32 @@ if(empty($err))
                               $_SESSION["id"] = $id;
                               $_SESSION["loggedin"] = true;
                               $_SESSION["user_role"] = $user_role;
-  
+ 
                               //Redirect user to welcome page
                               header("location: welcome.php");
                             }
                             else {
                               //echo 'invalid username or password';
-                              
+                             
                               //header("location:login.php?msg=$msg");
                               echo  '<div class="alert alert-danger">
                                       <a href="#" class="close" data-dismiss="alert" aria-label="close">Close X</a>
                                       <p><strong>Alert!</strong></p>
                                       user role is wrong! Please try again!.
                                     </div>';
-
+ 
                             }
-                            
+                           
                         }
                     }
                 }
-
+ 
     }
 }    
-
+ 
 }
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -108,23 +113,27 @@ if(empty($err))
                 <div class="row g-0">
                   <div class="col-lg-6">
                     <div class="card-body p-md-5 mx-md-4">
-      
+     
                       <div class="text-center">
                         <img src="img/Banasthali_Vidyapeeth_Logo.png" style="width: 100px;" alt="logo">
                         <h4 class="mt-1 mb-3 pb-1">Campus Placement Banasthali Vidyapith</h4>
                       </div>
-      
-                      
+     
+                     
                       <form action="" method="post">
                         <p>Please login to your account</p>
+                        <label for="exampleInputEmail1">Username</label> </br>
+                        <span><?php if(isset($err)) echo $err;?></span>
                         <div class="form-outline mb-4">
                           <!--<label for="exampleInputEmail1">Username</label>-->
                           <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
                         </div>
+                        <label for="exampleInputPassword1">Password</label>
                         <div class="form-outline mb-4">
                           <!--<label for="exampleInputPassword1">Password</label>-->
                           <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
                         </div>
+                        <label for="exampleInputPassword1">Role</label>
                         <div class="form-outline mb-4">
                           <select name="user_role" class="form-select" aria-label="Default select example">
                             <option value="TPO" selected>TPO</option>
@@ -145,21 +154,21 @@ if(empty($err))
                           </button>
                         </div>
                     </form>
-      
+     
                     </div>
                   </div>
                   <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                     <h4 class="mb-4">Banasthali Vidyapith</h4>
-                      <p1 class="large mb-0">Banasthali Vidyapith aims at the synthesis of spiritual 
+                      <p1 class="large mb-0">Banasthali Vidyapith aims at the synthesis of spiritual
                         values and scientific achievements of both the East and the West. Its educational
                          programme is based on the concept of "Panchmukhi Shiksha" and aims at all round
                           harmonious development of personality.</p1>
-
-                      <p2 class="large mb-0">Emphasis on Indian culture and thought 
-                        characterized by simple living and khadi wearing are hallmarks 
+ 
+                      <p2 class="large mb-0">Emphasis on Indian culture and thought
+                        characterized by simple living and khadi wearing are hallmarks
                         of life at Banasthali.</p2>
-                      
+                     
                     </div>
                   </div>
                 </div>
@@ -169,26 +178,26 @@ if(empty($err))
         </div>
       </section>
     <!-- End your project here-->
-
+ 
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
-
+ 
     <style>
       .gradient-custom-2 {
       /* fallback for old browsers */
       background: #fccb90;
-
+ 
       /* Chrome 10-25, Safari 5.1-6 */
       background: rgb(41,22,138);
       background: linear-gradient(90deg, rgba(41,22,138,1) 0%, rgba(56,88,186,1) 46%, rgba(0,173,255,1) 100%);
       /*background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);*/
-
+ 
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       /*background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);*/
     }
-
+ 
     @media (min-width: 768px) {
       .gradient-form {
         height: 100vh !important;
@@ -203,5 +212,3 @@ if(empty($err))
     </style>
   </body>
 </html>
-
-

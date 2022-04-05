@@ -5,87 +5,28 @@ include 'connect.php';
   $sql="select * from company_details where cid=(select cid from company_details where cname= '".$ucname."' AND city = '".$ucity."')";
   $result=mysqli_query($con,$sql);
   $row=mysqli_fetch_assoc($result); 
-    $cname=$row['cname'];
-    $cname_abb=$row['cname_abb'];
-    $address=$row['address'];
-    $city=$row['city'];
-    $state=$row['state'];
-    $pincode=$row['pincode'];
-    $fte=$row['fte'];
-    $smi=$row['smi'];
-    $tmi=$row['tmi'];
-    $ctc_ug=$row['ctc_ug'];
-    $stipend=$row['stipend'];
-
+  $cname=$row['cname'];
+  $cname_abb=$row['cname_abb'];
+  $address=$row['address'];
+  $city=$row['city'];
+  $state=$row['state'];
+  $pincode=$row['pincode'];
+  $fte=$row['fte'];
+  $smi=$row['smi'];
+  $tmi=$row['tmi'];
+  $ctc_ug=$row['ctc_ug'];
+  $stipend=$row['stipend'];
 
   $sql2="select * from internship_details where cid=(select cid from company_details 
     where cname= '".$ucname."' AND city = '".$ucity."')";
   $result2=mysqli_query($con,$sql2);
   
-    $row=mysqli_fetch_assoc($result2);
-    $test=$row['test'];
-    $paid=$row['paid'];
-    $tentative_students_taken=$row['tentative_students_taken'];
-    $tentative_resume_sent=$row['tentative_resume_sent'];
-
-    
-
-
-    /*if(isset($_POST['submit'])){
-      $cname=$_POST['cname'];
-      $cname_abb=$_POST['cname_abb'];
-      $address=$_POST['address'];
-      $city=$_POST['city'];
-      $state=$_POST['state'];
-      $pincode=$_POST['pincode'];
-      $fte=$_POST['fte'];
-      $smi=$_POST['smi'];
-      $tmi=$_POST['tmi'];
-      $ctc_ug=$_POST['ctc_ug'];
-      $stipend=$_POST['stipend'];
-
-      $sql1="update company_details set cname='$cname',cname_abb='$cname_abb',
-      address='$address', city='$city', state='$state', pincode='$pincode', fte='$fte', smi='$smi',
-      tmi='$tmi', ctc_ug='$ctc_ug', stipend='$stipend' where cid=(select cid from company_details where cname= '".$ucname."' AND city = '".$ucity."')";
-      $result1=mysqli_query($con,$sql1);
-      
-      if($result1){
-         // echo "Data updated successfully";
-         header('location:disp.php');
-      }
-      else{
-          die(mysqli_error($con));
-      }
-    }*/
-
-    /*if(isset($_POST['submit'])){
-      $test=$_POST['test'];
-      $paid=$_POST['paid'];
-      $tentative_students_taken=$_POST['tentative_students_taken'];
-      $tentative_resume_sent=$_POST['tentative_resume_sent'];
-
-      $sql2="update internship_details set test='$test', paid='$paid',
-      tentative_students_taken='$tentative_students_taken',
-      tentative_resume_sent='$tentative_resume_sent' where cid=(select cid from company_details where cname= '".$ucname."' AND city = '".$ucity."')";
-     
-       $result2=mysqli_query($con,$sql2);
-      if($result2){
-         // echo "Data updated successfully";
-         header('location:welcome.php');
-      }
-      else{
-          die(mysqli_error($con));
-      }
-    }*/
-
-    
-
+  $row=mysqli_fetch_assoc($result2);
+  $test=$row['test'];
+  $paid=$row['paid'];
+  $tentative_students_taken=$row['tentative_students_taken'];
+  $tentative_resume_sent=$row['tentative_resume_sent'];
 ?>
-
-
-
-
-
 
 <!doctype html>
 <html lang="en">
