@@ -136,6 +136,12 @@ mysqli_close($con);
     />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
+    <style type="text/css">
+		.error {
+			font-size: 15px;
+			color: red;
+		}
+    </style>
   </head>
   <body>
     <!-- Start your project here-->
@@ -151,14 +157,13 @@ mysqli_close($con);
                       <form action="" method="post" name="form1" onsubmit="validate()">
                         <h4>Please register your account</h4>
                         <label for="inputEmail4">Username</label> </br>
-                        <span id="show-error"></span>
-                        <span><?php if(isset($username_err)) echo $username_err;?></span>
+                        <span class="error"><?php if(isset($username_err)) echo $username_err;?></span>
                         <div class="form-outline mb-4">
                             <input type="text" class="form-control" name="username" id="inputEmail4" placeholder="Username" onload="required()" autocomplete="off">
                         </div>
                         <label for="inputPassword4">Password</label>
                         </br>
-                        <span><?php if(isset($password_err)) echo $password_err;?></span>
+                        <span class="error"><?php if(isset($password_err)) echo $password_err;?></span>
                         <div class="form-outline mb-4">
                             <input type="password" class="form-control" name ="password" id="inputPassword4" placeholder="Password">
                         </div>
@@ -168,8 +173,8 @@ mysqli_close($con);
                         </div>
                         <label for="inputPassword4">Select Role</label>
                         <select  name ="user_role" class="form-select mb-4" aria-label="Default select example">
-                            <option selected value="TPO">TPO</option>
-                            <option value="TPC">TPC</option>
+                            <option selected value="TPO">Training & Placement Officer</option>
+                            <option value="TPC">Training & Placement Cordinator</option>
                             <option value="STUDENT">STUDENT</option>
                         </select>
       

@@ -22,10 +22,6 @@ while( $row=mysqli_fetch_array($result) ){
     $html .='<td>'.$city.'</td>';
     $html .='<td>'.$state.'</td>';
     $html .='<td>'.$ctc_ug.'</td>';
-    $html .='<td>
-    <button class="btnd"><a href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash" style="color:red"></i></a></button>
-    <button class="btnu"><a href="update.php?updatecname='.$cname.' & updatecity='.$city.'" ><i class="fa fa-edit" style="color:green"></i></a></button>
-    </td>';
     $html .='</tr>';
 }
 

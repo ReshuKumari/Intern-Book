@@ -27,11 +27,12 @@ if(isset($_POST['submit'])){
         $cname = $_POST["cname"];
      }
 
-     echo 'cname';
-     echo $flag;
+     //echo 'cname';
+     //echo $flag;
 
      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-       if (preg_match('/[^a-zA-Z -]+$/', $_POST['cname_abb'])==false && empty($_POST['cname_abb'])==false) {
+       if (preg_match('/[^a-zA-Z -]+$/', $_POST['cname_abb'])==false &&
+        empty($_POST['cname_abb'])==false) {
         $cname_abbErr = "Company abbreviation can only be alphabet";
         $flag = false;
       }
@@ -62,7 +63,7 @@ if(isset($_POST['submit'])){
       if (empty($_POST["city"])) {
           $cityErr = " City is required";
           $flag = false;
-      } else if (preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["city"])==false) {
+      } else if (preg_match('/^[-a-zA-Z ]+$/', $_POST["city"])==false) {
         $cityErr = "Company city can only be alphabet";
         $flag = false;
       }
@@ -93,12 +94,12 @@ if(isset($_POST['submit'])){
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if(preg_match('/^[0-9]{6}$/', $_POST["pincode"])==false && empty($_POST["pincode"])==false){  
-  $pincodeErr = "Pincode can be of maximum length 6";
-  $flag = false;
+  if(preg_match('/^[0-9]{6}$/', $_POST["pincode"])==false &&
+   empty($_POST["pincode"])==false){  
+    $pincodeErr = "Pincode can be of maximum length 6";
+    $flag = false;
   }
   else{
-    
     $pincode = $_POST['pincode'];
   } 
   }
@@ -235,7 +236,6 @@ function test_input($data)
 	}
 ?>
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -246,6 +246,7 @@ function test_input($data)
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylecss.css">
     <!--<script src="myScripts.js"></script> -->
     <script type="text/javascript" src="myScripts.js"></script>
 
@@ -274,46 +275,151 @@ function test_input($data)
 		.error {
 			font-size: 15px;
 			color: red;
-		}
+    }
     
- }
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+.container_form {
+  border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    margin: auto;
+    width: 75%;
+}
+
+.title {
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #1DA1F2;
+  letter-spacing: 1px;
+}
+
+.inputs {
+  text-align: left;
+  margin-top: 30px;
+}
+
+label, input, button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+label {
+  margin-bottom: 4px;
+  font-size: 25px;
+}
+
+label:nth-of-type(2) {
+  margin-top: 12px;
+}
+
+input::placeholder {
+  color: gray;
+}
+
+.form-control{
+  font-size: 25px;
+}
+input {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+
+select{
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 19px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+
+}
+
+button {
+  color: white;
+  width: 25%;
+    margin: auto;
+  margin-top: 20px;
+  background: #1DA1F2;
+  height: 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
+}
+
+button:hover {
+  box-shadow: none;
+}
+
+
+h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 	</style>
   </head>
   <body>
-  <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>About Us</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Contact Page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="welcome.php"><i class="far fa-clone"></i>Home Page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Help</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="insert.php"><i class="far fa-chart-bar"></i>Insert</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php"><i class="far fa-copy"></i>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container my-5">
-    <form action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-    <h2 style="text-align:left">COMPANY DETAILS</h2>
-  
-  <div class="mb-3">
+  <div class="container_nav">
+        <ul class="nav">
+            <li><a href="/" class="three-d">
+                Home
+                <span aria-hidden="true" class="three-d-box">
+                    <span class="front">HOME</span>
+                    <span class="back">HOME</span>
+                </span>
+            </a></li>
+            <li><a href="insert.php" class="three-d">
+                Home
+                <span aria-hidden="true" class="three-d-box">
+                    <span class="front">INSERT</span>
+                    <span class="back">INSERT</span>
+                </span>
+            </a></li>
+            <li><a href="javascript:void(0);" class="three-d">
+                Home
+                <span aria-hidden="true" class="three-d-box">
+                    <span class="front">CONTACT</span>
+                    <span class="back">CONTACT</span>
+                </span>
+            </a></li>
+            <li><a href="javascript:void(0);" class="three-d">
+                Home
+                <span aria-hidden="true" class="three-d-box">
+                    <span class="front">HELP</span>
+                    <span class="back">HELP</span>
+                </span>
+            </a></li>
+            <li><a href="logout.php" class="three-d">
+                Home
+                <span aria-hidden="true" class="three-d-box">
+                    <span class="front">LOGOUT</span>
+                    <span class="back">LOGOUT</span>
+                </span>
+            </a></li>
+        </ul>
+    </div>
+    <div class="wrapper">
+      <div class="container_form">
+        <form action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+        <fieldset>
+          <div class = "title"><h2>COMPANY DETAILS</h2></div>
+          
+          <div class="mb-3">
     <label >Company Name*</label>
     <input type="text" class="form-control"
     placeholder="Enter Company name" name="cname"autocomplete="off" value="<?= $cname; ?>">
@@ -365,7 +471,7 @@ function test_input($data)
     <label >Total Students selected for full time employment-FTE*</label>
     <input type="number" min=0 class="form-control"
     placeholder="Enter total no. of fte" name="fte" autocomplete="off" value="<?= $fte; ?>">
-    <span  class="error"> ?= $fteErr; ?></span>
+    <span  class="error"> <?= $fteErr; ?></span>
     </div>
 
     <div class="mb-3">
@@ -426,13 +532,11 @@ function test_input($data)
     placeholder="Enter tentative number of resume sent" name="tentative_resume_sent" autocomplete="off" value="<?= $tentative_resume_sent; ?>">
     <span  class="error"> <?= $tentative_resume_sentErr; ?></span>
     </div>
-
-    
-   
-
- 
-  <button type="submit" class="btn btn-primary" name="submit">submit</button>
-</form>
-    </div>
+            <button type="submit" name="submit">SUBMIT</button>
+        </fieldset>
+         
+          </form>
+      </div>
+</div>
   </body>
 </html>

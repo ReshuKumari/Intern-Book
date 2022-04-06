@@ -22,7 +22,7 @@ $err = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
     if(empty(trim($_POST['username'])) || empty(trim($_POST['password'])))
     {
-        $err = "Please enter username and password";
+        $err = "Please enter valid username and password";
     }
     else{
         $username = trim($_POST['username']);
@@ -60,12 +60,20 @@ if(empty($err))
                               $_SESSION["user_role"] = $user_role;
  
                               //Redirect user to welcome page
+                              if($user_role=="TPO")
                               header("location: welcome.php");
+                              else if($user_role=="TPC")
+                              header("location: welcometpc.php");
+                              else
+                              {
+                                header("location: student_insert.php");
+                              }
                             }
                             else {
                               //echo 'invalid username or password';
                              
                               //header("location:login.php?msg=$msg");
+                              $err="Please enter valid username and password";
                               echo  '<div class="alert alert-danger">
                                       <a href="#" class="close" data-dismiss="alert" aria-label="close">Close X</a>
                                       <p><strong>Alert!</strong></p>
@@ -75,6 +83,14 @@ if(empty($err))
                             }
                            
                         }
+                        else
+                        {
+                          $err="Please enter valid username and password";
+                        }
+                    }
+                    else
+                    {
+                      $err="Please enter valid username and password";
                     }
                 }
  
@@ -102,6 +118,12 @@ if(empty($err))
     />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
+    <style type="text/css">
+		.error {
+			font-size: 15px;
+			color: red;
+		}
+    </style>
   </head>
   <body>
     <!-- Start your project here-->
@@ -123,7 +145,7 @@ if(empty($err))
                       <form action="" method="post">
                         <p>Please login to your account</p>
                         <label for="exampleInputEmail1">Username</label> </br>
-                        <span><?php if(isset($err)) echo $err;?></span>
+                        <span class="error"><?php if(isset($err)) echo $err;?></span>
                         <div class="form-outline mb-4">
                           <!--<label for="exampleInputEmail1">Username</label>-->
                           <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
@@ -136,8 +158,8 @@ if(empty($err))
                         <label for="exampleInputPassword1">Role</label>
                         <div class="form-outline mb-4">
                           <select name="user_role" class="form-select" aria-label="Default select example">
-                            <option value="TPO" selected>TPO</option>
-                            <option value="TPC">TPC</option>
+                            <option value="TPO" selected>Training & Placement Officer</option>
+                            <option value="TPC">Training & Placement Cordinator</option>
                             <option value="STUDENT">STUDENT</option>
                             <!--<option value="3">STUDENT</option>-->
                           </select>
