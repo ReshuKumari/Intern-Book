@@ -1,8 +1,5 @@
-MDB5
-Version: FREE 3.10.2
+Demo Video:
+https://drive.google.com/file/d/1SQ_CqqNO4MjHhIoQ3qAmH_w70FaUtnzx/view?usp=sharing
 
-Documentation:
-https://mdbootstrap.com/docs/standard/
-
-Contact:
-office@mdbootstrap.com
+SRS and SDS:
+https://docs.google.com/document/d/1rAFWL_9TNgJCFj7hn6LaBIllb3BH55BfWVaAY-ehGzo/edit?usp=sharing
