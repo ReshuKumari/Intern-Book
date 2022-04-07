@@ -154,41 +154,48 @@ h1 {
   <body>
   <div class="container_nav">
         <ul class="nav">
-            <li><a href="/" class="three-d">
-                Home
+        <li><a href="homepagetpo.php" class="three-d">
+                HOME
                 <span aria-hidden="true" class="three-d-box">
                     <span class="front">HOME</span>
                     <span class="back">HOME</span>
                 </span>
             </a></li>
-            <li><a href="insert.php" class="three-d">
-                Home
+            <li><a href="welcome.php" class="three-d">
+                VIEW
                 <span aria-hidden="true" class="three-d-box">
-                    <span class="front">INSERT</span>
-                    <span class="back">INSERT</span>
+                    <span class="front">VIEW</span>
+                    <span class="back">VIEW</span>
                 </span>
             </a></li>
-            <li><a href="javascript:void(0);" class="three-d">
-                Home
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">CONTACT</span>
-                    <span class="back">CONTACT</span>
-                </span>
-            </a></li>
-            <li><a href="javascript:void(0);" class="three-d">
-                Home
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">HELP</span>
-                    <span class="back">HELP</span>
-                </span>
-            </a></li>
-            <li><a href="logout.php" class="three-d">
-                Home
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">LOGOUT</span>
-                    <span class="back">LOGOUT</span>
-                </span>
-            </a></li>
+                <li><a href="insert.php" class="three-d">
+                    INSERT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">INSERT</span>
+                        <span class="back">INSERT</span>
+                    </span>
+                </a></li>
+                <li><a href="javascript:void(0);" class="three-d">
+                    CONTACT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">CONTACT</span>
+                        <span class="back">CONTACT</span>
+                    </span>
+                </a></li>
+                <li><a href="javascript:void(0);" class="three-d">
+                    HELP
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">HELP</span>
+                        <span class="back">HELP</span>
+                    </span>
+                </a></li>
+                <li><a href="logout.php" class="three-d">
+                    LOGOUT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">LOGOUT</span>
+                        <span class="back">LOGOUT</span>
+                    </span>
+                </a></li>
         </ul>
     </div>
     <div class="wrapper">

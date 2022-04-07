@@ -73,41 +73,48 @@ include 'connect.php';
 <body>
     <div class="container_nav">
         <ul class="nav">
-            <li><a href="welcome.php" class="three-d">
+        <li><a href="homepagetpo.php" class="three-d">
                 HOME
                 <span aria-hidden="true" class="three-d-box">
                     <span class="front">HOME</span>
                     <span class="back">HOME</span>
                 </span>
             </a></li>
-            <li><a href="insert.php" class="three-d">
-                INSERT
+            <li><a href="welcome.php" class="three-d">
+                VIEW
                 <span aria-hidden="true" class="three-d-box">
-                    <span class="front">INSERT</span>
-                    <span class="back">INSERT</span>
+                    <span class="front">VIEW</span>
+                    <span class="back">VIEW</span>
                 </span>
             </a></li>
-            <li><a href="javascript:void(0);" class="three-d">
-                CONTACT
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">CONTACT</span>
-                    <span class="back">CONTACT</span>
-                </span>
-            </a></li>
-            <li><a href="javascript:void(0);" class="three-d">
-                HELP
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">HELP</span>
-                    <span class="back">HELP</span>
-                </span>
-            </a></li>
-            <li><a href="logout.php" class="three-d">
-                LOGOUT
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">LOGOUT</span>
-                    <span class="back">LOGOUT</span>
-                </span>
-            </a></li>
+                <li><a href="insert.php" class="three-d">
+                    INSERT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">INSERT</span>
+                        <span class="back">INSERT</span>
+                    </span>
+                </a></li>
+                <li><a href="javascript:void(0);" class="three-d">
+                    CONTACT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">CONTACT</span>
+                        <span class="back">CONTACT</span>
+                    </span>
+                </a></li>
+                <li><a href="javascript:void(0);" class="three-d">
+                    HELP
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">HELP</span>
+                        <span class="back">HELP</span>
+                    </span>
+                </a></li>
+                <li><a href="logout.php" class="three-d">
+                    LOGOUT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">LOGOUT</span>
+                        <span class="back">LOGOUT</span>
+                    </span>
+                </a></li>
         </ul>
     </div>
     <div class = "wrapper"> 
@@ -167,7 +174,7 @@ include 'connect.php';
           <td>'.$state.'</td>
           <td>'.$ctc.'</td>
           <td>
-          <button class="btnd" title="DELETE DETAILS"><a href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash" style="color:red"></i></a></button>
+          <button class="btnd" title="DELETE DETAILS"><a  onclick="return confirm(\'Are you sure you want to delete this record?\')" href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash" style="color:red"></i></a></button>
           <button class="btnu" title="UPDATE DETAILS"><a href="update.php?updatecname='.$cname.' & updatecity='.$city.'" ><i class="fa fa-edit" style="color:green"></i></a></button>
           </td>
         </tr> 

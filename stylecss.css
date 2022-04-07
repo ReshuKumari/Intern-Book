@@ -39,7 +39,7 @@ body{
               padding: 5px;
               display: inline;
               position: relative;
-              margin: 0 83px;
+              margin: 0 50px;
           }
           .nav::after, .nav::before {
               content: "";

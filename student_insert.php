@@ -3,6 +3,7 @@
 include 'connect.php';
 $sid = $company1 = $company2 = $company3=$self=$resume=NULL;
 $cname1Err = $cname2Err = $cname3Err = $selfErr = $sidErr =NULL;
+$flag=true;
 
 if(isset($_POST['submit'])){
     //$sid = $_POST["sid"];
@@ -85,12 +86,21 @@ if(isset($_POST['submit'])){
     $uploads_dir = 'uploaded';
     #TO move the uploaded file to specific location
     move_uploaded_file($tname, $uploads_dir.'/'.$resume);
-    if(flag)
-    {
+    if($flag){
       $sql="insert into student(sid,company1,company2,company3,self,resume) 
       values('$sid','$company1','$company2','$company3','$self','$resume')";
       $result=mysqli_query($con,$sql);
-    }
+      
+      //$result2=mysqli_query($con,$result3);
+      if($result){
+         // echo "Data inserted successfully";
+         echo '<div class="alert alert-success">Thank You! Data is inserted </div>';
+          header("Refresh: 3; URL=student_insert.php");
+      }
+      else{
+          die(mysqli_error($con));
+      }
+  }
 }
 
 ?>
@@ -224,12 +234,16 @@ h1 {
   top: 0;
   left: 0;
 }
+.error {
+			font-size: 15px;
+			color: red;
+    }
 	</style>
   </head>
   <body>
   <div class="container_nav">
         <ul class="nav">
-            <li><a href="/" class="three-d">
+            <li><a href="" class="three-d">
                 Home
                 <span aria-hidden="true" class="three-d-box">
                     <span class="front">HOME</span>
@@ -268,30 +282,35 @@ h1 {
             <label >Enter Roll Number*</label>
             <input type="number" class="form-control"
             placeholder="Roll no" name="sid" autocomplete="off" value="<?= $sid; ?>">
+            <span  class="error"> <?= $sidErr; ?></span>
         </div>
 
         <div class="mb-3">
             <label >First Company</label>
             <input type="text" class="form-control"
             placeholder="Company1" name="company1" autocomplete="off" value="<?= $company1; ?>">
+            <span  class="error"> <?= $cname1Err; ?></span>
         </div>
 
         <div class="mb-3">
             <label >Second Company</label>
             <input type="text" class="form-control"
             placeholder="Company2" name="company2" autocomplete="off" value="<?= $company2; ?>">
+            <span  class="error"> <?= $cname2Err; ?></span>
         </div>
 
         <div class="mb-3">
             <label >Third Company</label>
             <input type="text" class="form-control"
             placeholder="Company3" name="company3" autocomplete="off" value="<?= $company3; ?>">
+            <span  class="error"> <?= $cname3Err; ?></span>
         </div>
 
         <div class="mb-3">
             <label >Self</label>
             <input type="text" class="form-control"
             placeholder="Self" name="self" autocomplete="off" value="<?= $self; ?>">
+            <span  class="error"> <?= $selfErr; ?></span>
         </div>
 
         <div class="mb-3">

@@ -61,9 +61,9 @@ if(empty($err))
  
                               //Redirect user to welcome page
                               if($user_role=="TPO")
-                              header("location: welcome.php");
+                              header("location: homepagetpo.php");
                               else if($user_role=="TPC")
-                              header("location: welcometpc.php");
+                              header("location: homepagetpc.php");
                               else
                               {
                                 header("location: student_insert.php");
