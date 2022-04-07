@@ -436,7 +436,7 @@ h1 {
 
    
   <div class="mb-3">
-    <label >Adress of the Company</label>
+    <label >Address of the Company</label>
     <input type="text" class="form-control"
     placeholder="Enter company address" name="address" autocomplete="off" value="<?= $address; ?>">
     <span  class="error"> <?= $addressErr; ?></span>
@@ -489,14 +489,14 @@ h1 {
     </div>
 
     <div class="mb-3">
-    <label >CTC of the Company-UG*</label>
+    <label >CTC of the Company (in lakhs)*</label>
     <input type="number" class="form-control" min=0
     placeholder="Enter ctc_ug" name="ctc_ug" autocomplete="off" value="<?= $ctc_ug; ?>">
     <span  class="error"> <?= $ctc_ugErr; ?></span>
     </div>
 
     <div class="mb-3">
-    <label >Stipend of the company*</label>
+    <label >Stipend of the company (in thousands)*</label>
     <input type="number" class="form-control" min=0
     placeholder="Enter stipend" name="stipend" autocomplete="off" value="<?= $stipend; ?>">
     <span  class="error"> <?= $stipendErr; ?></span>

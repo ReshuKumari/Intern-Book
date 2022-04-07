@@ -17,7 +17,7 @@ include 'connect.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud operation</title>
+    <title>Internship Management system</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -70,7 +70,7 @@ include 'connect.php';
     </script>
     <style>
 
-.wrapper {
+/*.wrapper {
   width: 100%;
   background-image: radial-gradient(circle, #f2fbff, #d3e6f3, #8888884f); font-family: poppins;
     padding: 75px;
@@ -85,7 +85,7 @@ include 'connect.php';
         .nav {
             justify-content: center;
             position: relative;
-            margin: auto; /* Centering the menu */
+            margin: auto; 
             height: 60px;
             width: 1450px;
             text-align: center;
@@ -115,14 +115,13 @@ include 'connect.php';
             border: 23px solid #3833d6;
             z-index: -1;
         }
- 
-/* The left ribbon */
+
         .nav::before {
             border-left-color: transparent;
             left: -30px;
         }
  
-/* The right ribbon */
+
         .nav::after {
             border-right-color: transparent;
             right: -30px;
@@ -155,7 +154,7 @@ include 'connect.php';
             position: relative;
             cursor: pointer;
         }
-            /* complete the animation! */
+  
             .three-d:hover .three-d-box, 
             .three-d:focus .three-d-box {
                 transform: translateZ(-25px) rotateX(90deg);
@@ -174,10 +173,7 @@ include 'connect.php';
             height: 100%;
         }
 
-        /* 
-            put the "front" and "back" elements into place with CSS transforms, 
-            specifically translation and translatez
-        */
+   
         .front {
             transform: rotatex(0deg) translatez(25px);
         }
@@ -202,7 +198,6 @@ include 'connect.php';
             border-radius: 50px;
         }
 
-        /*ctc range*/
         .slider-container {
   background: white;
     margin: auto;
@@ -211,7 +206,6 @@ include 'connect.php';
 }
 
 
-/*Search box*/
 div#tableid_filter {
     margin-left: 350px;
     width: 100%;
@@ -260,7 +254,7 @@ div#tableid_info {
     text-shadow: 1px 2px rgb(0 0 0 / 15%);
     margin-top: 4.5px;
     font-size: 18px;
-}
+}*/
     </style>
 </head>
 
@@ -303,7 +297,7 @@ div#tableid_info {
 
     <div class="slider-container">
       <!-- slider --> 
-      <label>CTC RANGE </label>
+      <label>CTC RANGE (Lakhs)</label>
       <div id="slider" class="slider-child"></div><br/>
       Range: <span id='range'></span>
     </div>  

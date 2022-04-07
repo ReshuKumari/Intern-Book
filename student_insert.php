@@ -2,27 +2,79 @@
 
 include 'connect.php';
 $sid = $company1 = $company2 = $company3=$self=$resume=NULL;
+$cname1Err = $cname2Err = $cname3Err = $selfErr = $sidErr =NULL;
 
 if(isset($_POST['submit'])){
-    $sid = $_POST["sid"];
-    /*if (empty($_POST["company1"])) {
-        $cname1Err = "Company name is required";
+    //$sid = $_POST["sid"];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      if (empty($_POST["sid"])) {
+        $sidErr = "Student roll no is required";
         $flag = false;
+      }
+      else if(preg_match('/^[0-9]{7}$/', $_POST["sid"])==false &&
+       empty($_POST["sid"])==false){  
+        $sidErr = " can be of maximum length 7";
+        $flag = false;
+      }
+      else{
+        $sid = $_POST['sid'];
+      } 
     }
-    else if (preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["company1"])==false) {
-      $cnameErr = "Company name can be alphabet or number";
+    if (preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["company1"])==false &&
+    empty($_POST["company1"])==false) {
+      $cname1Err = "Company name can be alphabet or number";
       $flag = false;
      }
-     else if(strlen($_POST["cname"])>200){
-      $cnameErr = "Company name can be of maximum length 200";
+     else if(strlen($_POST["company1"])>200){
+      $cname1Err  = "Company name can be of maximum length 200";
       $flag = false;
      } else {
-        $cname = $_POST["cname"];
-     }*/
-    $company1 = $_POST["company1"];
-    $company2 = $_POST["company2"];
-    $company3 = $_POST["company3"];
-    $self = $_POST["self"];
+        $company1 = $_POST["company1"];
+     }
+
+     //comp 2
+     if (preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["company2"])==false &&
+      empty($_POST["company2"])==false) {
+        $cname2Err = "Company name can be alphabet or number";
+        $flag = false;
+      }
+      else if(strlen($_POST["company2"])>200){
+        $cname2Err  = "Company name can be of maximum length 200";
+        $flag = false;
+      } else {
+          $company2 = $_POST["company2"];
+      }
+
+      //comp 3
+      if (preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["company3"])==false &&
+      empty($_POST["company3"])==false) {
+        $cname3Err = "Company name can be alphabet or number";
+        $flag = false;
+      }
+      else if(strlen($_POST["company3"])>200){
+        $cname3Err  = "Company name can be of maximum length 200";
+        $flag = false;
+      } else {
+          $company3 = $_POST["company3"];
+      }
+
+
+      //self
+      if (preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["self"])==false &&
+      empty($_POST["self"])==false) {
+        $selfErr = "Company name can be alphabet or number";
+        $flag = false;
+      }
+      else if(strlen($_POST["self"])>200){
+        $selfErr  = "Company name can be of maximum length 200";
+        $flag = false;
+      } else {
+          $self = $_POST["self"];
+      }
+    //$company1 = $_POST["company1"];
+    //$company2 = $_POST["company2"];
+    //$company3 = $_POST["company3"];
+    //$self = $_POST["self"];
     //$resume = $_FILES['file']['name'];
     $resume = rand(1000,10000)."-".$_FILES["file"]["name"];
  
@@ -33,9 +85,12 @@ if(isset($_POST['submit'])){
     $uploads_dir = 'uploaded';
     #TO move the uploaded file to specific location
     move_uploaded_file($tname, $uploads_dir.'/'.$resume);
-    $sql="insert into student(sid,company1,company2,company3,self,resume) 
-    values('$sid','$company1','$company2','$company3','$self','$resume')";
-    $result=mysqli_query($con,$sql);
+    if(flag)
+    {
+      $sql="insert into student(sid,company1,company2,company3,self,resume) 
+      values('$sid','$company1','$company2','$company3','$self','$resume')";
+      $result=mysqli_query($con,$sql);
+    }
 }
 
 ?>

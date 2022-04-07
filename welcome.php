@@ -17,7 +17,7 @@ include 'connect.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud operation</title>
+    <title>Internship Management system</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -130,7 +130,7 @@ include 'connect.php';
 
     <div class="slider-container">
       <!-- slider --> 
-      <label>CTC RANGE </label>
+      <label>CTC RANGE (in Lakhs)</label>
       <div id="slider" class="slider-child"></div><br/>
       Range: <span id='range'></span>
     </div>  
