@@ -4,11 +4,20 @@ require_once "connect.php";
 $username = $password = $confirm_password = $user_role = "";
 $username_err = $password_err = $confirm_password_err = "";
 
+$errors = array('username'=>'');
+
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
-        $username_err = "Username cannot be blank";
+        $username_err = 'Username cannot be blank';
+    }
+    else if(strlen($_POST["username"])<8 || strlen($_POST["username"])>20)
+    {
+        $username_err = 'Username should be of minimum length 8 and maximum length 20';
+    }
+    else if(preg_match('/^[a-zA-Z0-9_]+$/', $_POST["username"])==false) {
+      $username_err = 'Username can contain alphabet, number and underscore';
     }
     else{
         $sql = "SELECT id FROM users WHERE username = ?";
@@ -34,23 +43,35 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
             else{
                 //echo "Something went wrong";
                 echo  '<div class="alert alert-danger">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">Close X</a>
+                        <a href="" class="close" data-dismiss="alert" aria-label="close">Close X</a>
                         <p><strong>Alert!</strong></p>
-                        user role is wrong! Please try again!.
+                        Something went wrong! Please try again!.
                       </div>';
             }
         }
+        else {
+          //echo "Something went wrong";
+          echo  '<div class="alert alert-danger">
+                  <a href="" class="close" data-dismiss="alert" aria-label="close">Close X</a>
+                  <p><strong>Alert!</strong></p>
+                  Something went wrong! Please try again!.
+                </div>';
+        }
+        mysqli_stmt_close($stmt);
     }
-
-    mysqli_stmt_close($stmt);
 
 
 // Check for password
 if(empty(trim($_POST['password']))){
     $password_err = "Password cannot be blank";
 }
-elseif(strlen(trim($_POST['password'])) < 5){
-    $password_err = "Password cannot be less than 5 characters";
+else if(strlen(trim($_POST['password'])) < 8){
+    $password_err = "Password cannot be less than 8 characters";
+}
+else if(preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $_POST['password'])==false)
+{
+  $password_err="Password should have minimum eight characters, at least one uppercase letter, 
+  one lowercase letter, one number and one special character";
 }
 else{
     $password = trim($_POST['password']);
@@ -84,7 +105,7 @@ if(empty($username_err) && empty($password_err) && empty($confirm_password_err))
         // Try to execute the query
         if (mysqli_stmt_execute($stmt))
         {
-            header("location: login.php");
+            header("location: login.php?registered=true");
         }
         else{
             echo "Something went wrong... cannot redirect!";
@@ -103,9 +124,9 @@ mysqli_close($con);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>Register</title>
     <!-- MDB icon -->
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!--<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />-->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -115,6 +136,12 @@ mysqli_close($con);
     />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
+    <style type="text/css">
+		.error {
+			font-size: 15px;
+			color: red;
+		}
+    </style>
   </head>
   <body>
     <!-- Start your project here-->
@@ -126,18 +153,17 @@ mysqli_close($con);
                 <div class="row g-0">
                   <div class="col-lg-6">
                     <div class="card-body p-md-5 mx-md-4">
-      
-                      <!--<div class="text-center">
-                        <img src="img/Banasthali_Vidyapeeth_Logo.png" style="width: 100px;" alt="logo">
-                        <h4 class="mt-1 mb-3 pb-1">We are The Lotus Team</h4>
-                      </div>-->
-                      <form action="" method="post">
+
+                      <form action="" method="post" name="form1" onsubmit="validate()">
                         <h4>Please register your account</h4>
-                        <label for="inputEmail4">Username</label>
+                        <label for="inputEmail4">Username</label> </br>
+                        <span class="error"><?php if(isset($username_err)) echo $username_err;?></span>
                         <div class="form-outline mb-4">
-                            <input type="text" class="form-control" name="username" id="inputEmail4" placeholder="Email">
+                            <input type="text" class="form-control" name="username" id="inputEmail4" placeholder="Username" onload="required()" autocomplete="off">
                         </div>
                         <label for="inputPassword4">Password</label>
+                        </br>
+                        <span class="error"><?php if(isset($password_err)) echo $password_err;?></span>
                         <div class="form-outline mb-4">
                             <input type="password" class="form-control" name ="password" id="inputPassword4" placeholder="Password">
                         </div>
@@ -147,8 +173,8 @@ mysqli_close($con);
                         </div>
                         <label for="inputPassword4">Select Role</label>
                         <select  name ="user_role" class="form-select mb-4" aria-label="Default select example">
-                            <option selected value="TPO">TPO</option>
-                            <option value="TPC">TPC</option>
+                            <option selected value="TPO">Training & Placement Officer</option>
+                            <option value="TPC">Training & Placement Cordinator</option>
                             <option value="STUDENT">STUDENT</option>
                         </select>
       
@@ -186,6 +212,38 @@ mysqli_close($con);
     <script type="text/javascript"></script>
 
     <style>
+      li {list-style-type: none;
+        font-size: 16pt;
+      }
+      .mail {
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 400px;
+        background : 
+        #D8F1F8;
+        border: 1px soild 
+        silver;
+      }
+      .mail h2 {
+        margin-left: 38px;
+      }
+      input {
+        font-size: 20pt;
+      }
+      input:focus, textarea:focus{
+        background-color: 
+        lightyellow;
+      }
+      input submit {
+        font-size: 12pt;
+      }
+      .rq {
+        color: 
+        #FF0000;
+        font-size: 10pt;
+      }
+
       .gradient-custom-2 {
       /* fallback for old browsers */
       background: #fccb90;

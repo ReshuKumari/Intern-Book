@@ -5,28 +5,32 @@ include 'connect.php';
   $sql="select * from company_details where cid=(select cid from company_details where cname= '".$ucname."' AND city = '".$ucity."')";
   $result=mysqli_query($con,$sql);
   $row=mysqli_fetch_assoc($result); 
-  $cname=$row['cname'];
-  $cname_abb=$row['cname_abb'];
-  $address=$row['address'];
-  $city=$row['city'];
-  $state=$row['state'];
-  $pincode=$row['pincode'];
-  $fte=$row['fte'];
-  $smi=$row['smi'];
-  $tmi=$row['tmi'];
-  $ctc_ug=$row['ctc_ug'];
-  $stipend=$row['stipend'];
+    $cname=$row['cname'];
+    $cname_abb=$row['cname_abb'];
+    $address=$row['address'];
+    $city=$row['city'];
+    $state=$row['state'];
+    $pincode=$row['pincode'];
+    $fte=$row['fte'];
+    $smi=$row['smi'];
+    $tmi=$row['tmi'];
+    $ctc_ug=$row['ctc_ug'];
+    $stipend=$row['stipend'];
+
 
   $sql2="select * from internship_details where cid=(select cid from company_details 
     where cname= '".$ucname."' AND city = '".$ucity."')";
   $result2=mysqli_query($con,$sql2);
   
-  $row=mysqli_fetch_assoc($result2);
-  $test=$row['test'];
-  $paid=$row['paid'];
-  $tentative_students_taken=$row['tentative_students_taken'];
-  $tentative_resume_sent=$row['tentative_resume_sent'];
+    $row=mysqli_fetch_assoc($result2);
+    $test=$row['test'];
+    $paid=$row['paid'];
+    $tentative_students_taken=$row['tentative_students_taken'];
+    $tentative_resume_sent=$row['tentative_resume_sent'];
 ?>
+
+
+
 
 <!doctype html>
 <html lang="en">
@@ -39,6 +43,7 @@ include 'connect.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="stylecss.css">
+
     <script src="myScripts.js"></script>
     <title>Internship Management system</title>
     <style type="text/css">
@@ -46,7 +51,10 @@ include 'connect.php';
 			font-size: 15px;
 			color: red;
 		}
-    
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+
+
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
 
 .container_form {
@@ -152,28 +160,20 @@ h1 {
 	</style>
   </head>
   <body>
-  <?php include 'navbar1.php';?>
-  <!--<div class="container_nav">
+  <div class="container_nav">
         <ul class="nav">
-        <li><a href="homepagetpo.php" class="three-d">
-                HOME
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">HOME</span>
-                    <span class="back">HOME</span>
-                </span>
-            </a></li>
-            <li><a href="welcome.php" class="three-d">
-                VIEW
-                <span aria-hidden="true" class="three-d-box">
-                    <span class="front">VIEW</span>
-                    <span class="back">VIEW</span>
-                </span>
-            </a></li>
-                <li><a href="insert.php" class="three-d">
-                    INSERT
+        <li><a href="homepagetpc.php" class="three-d">
+                    HOME
                     <span aria-hidden="true" class="three-d-box">
-                        <span class="front">INSERT</span>
-                        <span class="back">INSERT</span>
+                        <span class="front">HOME</span>
+                        <span class="back">HOME</span>
+                    </span>
+                </a></li>
+                <li><a href="welcometpc.php" class="three-d">
+                    VIEW
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">VIEW</span>
+                        <span class="back">VIEW</span>
                     </span>
                 </a></li>
                 <li><a href="javascript:void(0);" class="three-d">
@@ -198,7 +198,7 @@ h1 {
                     </span>
                 </a></li>
         </ul>
-    </div>-->
+    </div>
     <div class="wrapper">
       <div class="container_form">
     <form  method="POST">
@@ -265,7 +265,7 @@ h1 {
     </div>
 
     <div class="mb-3">
-    <label >CTC of the Company(in lakhs)</label>
+    <label >CTC of the Company (in lakhs)</label>
     <input type="number" class="form-control"
     placeholder="Enter ctc_ug" name="ctc_ug" autocomplete="off" value="<?php echo $ctc_ug; ?>">
     </div>
@@ -279,22 +279,22 @@ h1 {
     <div class="mb-3">
     <label for="test">Does Company Take Test?</label>
     <select class="form-control" id="test" name="test" value="<?php echo $test;?>">
-      <option value="<?php echo $test; ?>" ><?php echo $test; ?></option>
+        <option value="<?php echo $test; ?>" ><?php echo $test; ?></option>
     </select>
   </div>
 
   <div class="mb-3">
     <label for="paid">Is Company Paid?</label>
     <select class="form-control" id="paid"  name="paid" value="<?php echo $paid;?>">
-      <option value="<?php echo $paid; ?>" ><?php echo $paid; ?></option>
+        <option value="<?php echo $paid; ?>" ><?php echo $paid; ?></option>
     </select>
   </div>
 
   <div class="mb-3">
     <label >Tentative number of Students selected for six month Internship</label>
     <input type="number" class="form-control"
-    placeholder="Enter tentative numer of students taken" name="tentative_students_taken" 
-    autocomplete="off" value="<?php echo $tentative_students_taken; ?>">
+    placeholder="Enter tentative numer of students taken" name="tentative_students_taken"
+     autocomplete="off" value="<?php echo $tentative_students_taken; ?>">
     </div>
 
   <div class="mb-3">

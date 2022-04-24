@@ -17,95 +17,112 @@ include 'connect.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud operation</title>
+    <title>Internship Management system</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylecss.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="myScripts.js"></script>      
-<script type='text/javascript'>
-$(document).ready(function(){
+    <script type='text/javascript'>
+        $(document).ready(function(){
 
-    // Initializing slider
-    $( "#slider" ).slider({
-        range: true,
-        min: 0,
-        max: 100,
-        values: [ 0, 100 ],
-        slide: function( event, ui ) {
+            // Initializing slider
+            $( "#slider" ).slider({
+                range: true,
+                min: 0,
+                max: 50,
+                values: [ 0, 50 ],
+                slide: function( event, ui ) {
 
-            // Get values
-            var min = ui.values[0];
-            var max = ui.values[1];
-            $('#range').text(min+' - ' + max);
-            
-            // AJAX request
-            $.ajax({
-                url: 'getData.php',
-                type: 'post',
-                data: {min:min,max:max},
-                success: function(response){
+                    // Get values
+                    var min = ui.values[0];
+                    var max = ui.values[1];
+                    $('#range').text(min+' - ' + max);
+                    
+                    // AJAX request
+                    $.ajax({
+                        url: 'getData.php',
+                        type: 'post',
+                        data: {min:min,max:max},
+                        success: function(response){
 
-                    // Updating table data
-                    $('#tableid tr:not(:first)').remove();
-                    $('#tableid').append(response);    
-                }      
+                            // Updating table data
+                            $('#tableid tr:not(:first)').remove();
+                            $('#tableid').append(response);    
+                        }      
+                    });
+                }
             });
-        }
-    });
-});
-</script>
+        });
+    </script>
 
-<script>
-    
-/*$('table tr').on('click', 'td', function () {
-   window.location.href = "view.php";
-})*/
-</script>
-
+    <script>
+        
+    /*$('table tr').on('click', 'td', function () {
+    window.location.href = "view.php";
+    })*/
+    </script>
 </head>
+
 <body>
-    <!--<nav class="navbar">
-        <ul class="rightnav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="insert.php">Insert</a></li>
-            <li><a href="logout.php">Logout</a></li>
+<?php include 'navbar1.php';?>
+    <!--<div class="container_nav">
+        <ul class="nav">
+        <li><a href="homepagetpo.php" class="three-d">
+                HOME
+                <span aria-hidden="true" class="three-d-box">
+                    <span class="front">HOME</span>
+                    <span class="back">HOME</span>
+                </span>
+            </a></li>
+            <li><a href="welcome.php" class="three-d">
+                VIEW
+                <span aria-hidden="true" class="three-d-box">
+                    <span class="front">VIEW</span>
+                    <span class="back">VIEW</span>
+                </span>
+            </a></li>
+            ?php if($_SESSION["user_role"]=="TPO")
+            {
+                echo '<li><a href="insert.php" class="three-d">
+                    INSERT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">INSERT</span>
+                        <span class="back">INSERT</span>
+                    </span>
+                </a></li>';
+            } ?>
+                
+                <li><a href="javascript:void(0);" class="three-d">
+                    CONTACT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">CONTACT</span>
+                        <span class="back">CONTACT</span>
+                    </span>
+                </a></li>
+                <li><a href="javascript:void(0);" class="three-d">
+                    HELP
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">HELP</span>
+                        <span class="back">HELP</span>
+                    </span>
+                </a></li>
+                <li><a href="logout.php" class="three-d">
+                    LOGOUT
+                    <span aria-hidden="true" class="three-d-box">
+                        <span class="front">LOGOUT</span>
+                        <span class="back">LOGOUT</span>
+                    </span>
+                </a></li>
         </ul>
-    </nav>-->
-    <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#">IMS</a>
-        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>About Us</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Contact Page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Home Page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Help</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="insert.php"><i class="far fa-chart-bar"></i>Insert</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php"><i class="far fa-copy"></i>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    </div>-->
+    <div class = "wrapper"> 
     <!--<div class="dropdownP">
       <button onclick="myFunction()" class="dropbtnP">PAID</button>
       <div id="mydropdownP" class="dropdownP-content">
@@ -125,7 +142,7 @@ $(document).ready(function(){
 
     <div class="slider-container">
       <!-- slider --> 
-      <label>CTC RANGE </label>
+      <label>CTC RANGE (in Lakhs)</label>
       <div id="slider" class="slider-child"></div><br/>
       Range: <span id='range'></span>
     </div>  
@@ -135,7 +152,7 @@ $(document).ready(function(){
     <tr>
     
       <th scope="col">NAME</th>
-      <th scope="col">ABB</th>
+      <th scope="col">ABBRE.</th>
       <th scope="col">CITY</th>
       <th scope="col">STATE</th>
       <th scope="col">CTC</th>
@@ -154,25 +171,44 @@ $(document).ready(function(){
           $city=$row['city'];
           $state=$row['state'];
           $ctc=$row['ctc_ug'];
+          if($_SESSION["user_role"]=="TPO"){
           echo '<a href="view.php?updatecname='.$cname.' & updatecity='.$city.'">
-          <tr onclick="window.location.href=\'view.php?updatecname='.$cname.' & updatecity='.$city.'\'">
+          <tr onclick="window.location.href=\'view.php?updatecname='.$cname.' & updatecity='.$city.'\'" style = "cursor:pointer">
           <th scope="row">'.$cname.'</th>
           <td>'. $cname_abb.'</td>
           <td>'. $city.'</td>
           <td>'.$state.'</td>
           <td>'.$ctc.'</td>
-          <td>
-          <button class="btnd"><a href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash"></i></a></button>
-          <button class="btnu"><a href="update.php?updatecname='.$cname.' & updatecity='.$city.'" ><i class="fa fa-edit"></i></a></button>
-          </td>
+            <td>
+            <button class="btnd" title="DELETE DETAILS"><a  onclick="return confirm(\'Are you sure you want to delete this record?\')" href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash" style="color:red"></i></a></button>
+            <button class="btnu" title="UPDATE DETAILS"><a href="update.php?updatecname='.$cname.' & updatecity='.$city.'" ><i class="fa fa-edit" style="color:green"></i></a></button>
+            </td>
         </tr> 
         </a>';
+          }
+          else
+          {
+            echo '<a href="view.php?updatecname='.$cname.' & updatecity='.$city.'">
+            <tr onclick="window.location.href=\'view.php?updatecname='.$cname.' & updatecity='.$city.'\'" style = "cursor:pointer">
+            <th scope="row">'.$cname.'</th>
+            <td>'. $cname_abb.'</td>
+            <td>'. $city.'</td>
+            <td>'.$state.'</td>
+            <td>'.$ctc.'</td>
+            <td>
+            </td>
+          </tr> 
+          </a>';
+          }
       }
    }
   ?>
   </tbody>
 </table>
     </div>
+</div>
+<?php include 'footer.php';?>
+
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
