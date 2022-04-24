@@ -71,7 +71,8 @@ include 'connect.php';
 </head>
 
 <body>
-    <div class="container_nav">
+<?php include 'navbar1.php';?>
+    <!--<div class="container_nav">
         <ul class="nav">
         <li><a href="homepagetpo.php" class="three-d">
                 HOME
@@ -87,13 +88,17 @@ include 'connect.php';
                     <span class="back">VIEW</span>
                 </span>
             </a></li>
-                <li><a href="insert.php" class="three-d">
+            ?php if($_SESSION["user_role"]=="TPO")
+            {
+                echo '<li><a href="insert.php" class="three-d">
                     INSERT
                     <span aria-hidden="true" class="three-d-box">
                         <span class="front">INSERT</span>
                         <span class="back">INSERT</span>
                     </span>
-                </a></li>
+                </a></li>';
+            } ?>
+                
                 <li><a href="javascript:void(0);" class="three-d">
                     CONTACT
                     <span aria-hidden="true" class="three-d-box">
@@ -116,7 +121,7 @@ include 'connect.php';
                     </span>
                 </a></li>
         </ul>
-    </div>
+    </div>-->
     <div class = "wrapper"> 
     <!--<div class="dropdownP">
       <button onclick="myFunction()" class="dropbtnP">PAID</button>
@@ -166,6 +171,7 @@ include 'connect.php';
           $city=$row['city'];
           $state=$row['state'];
           $ctc=$row['ctc_ug'];
+          if($_SESSION["user_role"]=="TPO"){
           echo '<a href="view.php?updatecname='.$cname.' & updatecity='.$city.'">
           <tr onclick="window.location.href=\'view.php?updatecname='.$cname.' & updatecity='.$city.'\'" style = "cursor:pointer">
           <th scope="row">'.$cname.'</th>
@@ -173,12 +179,27 @@ include 'connect.php';
           <td>'. $city.'</td>
           <td>'.$state.'</td>
           <td>'.$ctc.'</td>
-          <td>
-          <button class="btnd" title="DELETE DETAILS"><a  onclick="return confirm(\'Are you sure you want to delete this record?\')" href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash" style="color:red"></i></a></button>
-          <button class="btnu" title="UPDATE DETAILS"><a href="update.php?updatecname='.$cname.' & updatecity='.$city.'" ><i class="fa fa-edit" style="color:green"></i></a></button>
-          </td>
+            <td>
+            <button class="btnd" title="DELETE DETAILS"><a  onclick="return confirm(\'Are you sure you want to delete this record?\')" href="delete.php?deletecname='.$cname.' & deletecity='.$city.'" ><i class="fa fa-trash" style="color:red"></i></a></button>
+            <button class="btnu" title="UPDATE DETAILS"><a href="update.php?updatecname='.$cname.' & updatecity='.$city.'" ><i class="fa fa-edit" style="color:green"></i></a></button>
+            </td>
         </tr> 
         </a>';
+          }
+          else
+          {
+            echo '<a href="view.php?updatecname='.$cname.' & updatecity='.$city.'">
+            <tr onclick="window.location.href=\'view.php?updatecname='.$cname.' & updatecity='.$city.'\'" style = "cursor:pointer">
+            <th scope="row">'.$cname.'</th>
+            <td>'. $cname_abb.'</td>
+            <td>'. $city.'</td>
+            <td>'.$state.'</td>
+            <td>'.$ctc.'</td>
+            <td>
+            </td>
+          </tr> 
+          </a>';
+          }
       }
    }
   ?>
@@ -186,6 +207,8 @@ include 'connect.php';
 </table>
     </div>
 </div>
+<?php include 'footer.php';?>
+
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>

@@ -371,7 +371,8 @@ h1 {
 	</style>
   </head>
   <body>
-  <div class="container_nav">
+  <?php include 'navbar1.php';?>
+  <!--<div class="container_nav">
         <ul class="nav">
         <li><a href="homepagetpo.php" class="three-d">
                 HOME
@@ -416,7 +417,7 @@ h1 {
                     </span>
                 </a></li>
         </ul>
-    </div>
+    </div>-->
     <div class="wrapper">
       <div class="container_form">
     <form  method="POST">

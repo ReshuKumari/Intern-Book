@@ -4,9 +4,15 @@ body{
 
 .wrapper {
     width: 100%;
-    background-image: radial-gradient(circle, #f2fbff, #d3e6f3, #8888884f);
-        font-family: poppins;
-      padding: 75px;
+    /*background-image: radial-gradient(circle, #f2fbff, #d3e6f3, #8888884f);*/
+   /* background-image: url('img/bg.jpg');*/
+    background: url(img/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: poppins;
+    padding: 75px;
   }
   .container_nav{
     background-image: radial-gradient(circle, #f2fbff, #d3e6f3, #8888884f);

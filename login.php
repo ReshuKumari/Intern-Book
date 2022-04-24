@@ -59,14 +59,12 @@ if(empty($err))
                               $_SESSION["loggedin"] = true;
                               $_SESSION["user_role"] = $user_role;
  
-                              //Redirect user to welcome page
-                              if($user_role=="TPO")
-                              header("location: homepagetpo.php");
-                              else if($user_role=="TPC")
-                              header("location: homepagetpc.php");
-                              else
+                              if($_SESSION["user_role"]=="STUDENT")
                               {
                                 header("location: student_insert.php");
+                              }
+                              else {
+                                header("location: homepagetpo.php");
                               }
                             }
                             else {
@@ -93,7 +91,15 @@ if(empty($err))
                       $err="Please enter valid username and password";
                     }
                 }
+                else
+                {
+                  $err="User Not Registered";
+                }
  
+    }
+    else
+    {
+      $err="Something went wrong";
     }
 }    
  
