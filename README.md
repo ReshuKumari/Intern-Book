@@ -17,18 +17,20 @@
 *** See the bottom of this document for the declaration of the reference variables
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+-->
 
 
 
 <!-- PROJECT LOGO -->
 <br />
+<!--
 <div align="center">
   <a href="https://github.com/ReshuKumari/Intern-Book">
     <img src="img/Banasthali_Vidyapith_Logo.png" alt="Logo" width="80" height="80">
@@ -49,10 +51,12 @@
     <a href="https://github.com/ReshuKumari/Intern-Book/issues">Request Feature</a>
   </p>
 </div>
+-->
 
 
 
 <!-- TABLE OF CONTENTS -->
+<!--
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -78,9 +82,10 @@
   </ol>
 </details>
 
-
+-->
 
 <!-- ABOUT THE PROJECT -->
+<!--
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
@@ -115,9 +120,10 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
+-->
 
 <!-- GETTING STARTED -->
+<!--
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -150,10 +156,11 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
+-->
 
 
 <!-- USAGE EXAMPLES -->
+<!--
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -161,10 +168,11 @@ Use this space to show useful examples of how a project can be used. Additional 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
+-->
 
 
 <!-- ROADMAP -->
+<!--
 ## Roadmap
 
 - [x] Add Changelog
@@ -178,10 +186,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
+-->
 
 
 <!-- CONTRIBUTING -->
+<!--
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -196,19 +205,14 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+-->
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
 <!-- CONTACT -->
+<!--
 ## Contact
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
@@ -216,10 +220,12 @@ Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.c
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+-->
 
 
 
 <!-- ACKNOWLEDGMENTS -->
+<!--
 ## Acknowledgments
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
@@ -234,11 +240,13 @@ Use this space to list resources you find helpful and would like to give credit 
 * [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
+-->
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
+
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!--
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
@@ -252,6 +260,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
+-->
 
 SRS and SDS:
 https://docs.google.com/document/d/1rAFWL_9TNgJCFj7hn6LaBIllb3BH55BfWVaAY-ehGzo/edit?usp=sharing
